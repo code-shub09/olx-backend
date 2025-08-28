@@ -13,7 +13,16 @@ const PORT = process.env.PORT || 5000;
 dbConnection();
 
 // Middleware
-app.use(cors());
+app.use(
+    cors({
+      origin: [
+        "http://localhost:5173", // Vite local dev
+        "https://olx-frontend-rtjh-d7mnndftm-shubham-singhs-projects-5c69dcf7.vercel.app", // your Vercel frontend
+      ],
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true,
+    })
+  );
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads")); // serve uploaded images
