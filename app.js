@@ -48,10 +48,10 @@ dbConnection();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", // local frontend
       "https://olx-frontend-rtjh-34rj0udwa-shubham-singhs-projects-5c69dcf7.vercel.app", // deployed frontend
     ],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
