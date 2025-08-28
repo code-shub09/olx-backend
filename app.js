@@ -45,18 +45,34 @@ const PORT = process.env.PORT || 5000;
 dbConnection();
 
 // CORS setup
-app.use(
-  cors({
-    origin: [
-      "https://olx-frontend-rtjh-34rj0udwa-shubham-singhs-projects-5c69dcf7.vercel.app", // deployed frontend
-    ],
+// Allowed frontend URLs
+const allowedOrigins = [
+    "http://localhost:5173", // local dev
+    "https://olx-frontend-rtjh-34rj0udwa-shubham-singhs-projects-5c69dcf7.vercel.app", // Vercel frontend
+];
+
+// CORS options
+const corsOptions = {
+    origin: (origin, callback) => {
+        console.log("Request Origin:", origin);
+        // Allow requests with no origin (like Postman, curl, or mobile apps)
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+   
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+// Use CORS middleware
+app.use(cors(corsOptions));
 
 // Preflight requests for POST with multipart/form-data
-app.options("*", cors());
+app.options("*", cors(corsOptions));
+
 
 // Middleware
 app.use(express.json());
