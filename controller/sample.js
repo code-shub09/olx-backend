@@ -1,4 +1,4 @@
-// const Property = require('../model/property'); 
+const Property = require('../model/property'); 
 
 // async function handlerSend(req, res) {
 //     try {
