@@ -42,7 +42,8 @@ dbConnection();
 // Allowed frontend URLs
 const allowedOrigins = [
  
-  "https://olx-frontend-rtjh-34rj0udwa-shubham-singhs-projects-5c69dcf7.vercel.app", // Vercel frontend
+  "https://olx-frontend-rtjh-34rj0udwa-shubham-singhs-projects-5c69dcf7.vercel.app", 
+  "https://olx-frontend-rtjh-gisdwm9xk-shubham-singhs-projects-5c69dcf7.vercel.app"
 ];
 
 // CORS options
